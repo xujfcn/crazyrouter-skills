@@ -1,0 +1,17 @@
+{
+  "name": "crazyrouter-skills",
+  "version": "1.0.0",
+  "description": "Install AI agent skills from CrazyRouter Skills marketplace",
+  "bin": {
+    "crazyrouter-skills": "./bin/cli.mjs"
+  },
+  "type": "module",
+  "keywords": ["ai", "agent", "skills", "crazyrouter", "openclaw", "mcp"],
+  "author": "CrazyRouter",
+  "license": "MIT",
+  "homepage": "https://skills.crazyrouter.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xujfcn/crazyrouter-skills"
+  }
+}

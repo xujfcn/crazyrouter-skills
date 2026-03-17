@@ -37,8 +37,10 @@ To switch an existing OpenClaw install to CrazyRouter as the default API backend
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/xujfcn/crazyrouter-skills/main/scripts/switch_openclaw_to_crazyrouter.sh -o switch_openclaw_to_crazyrouter.sh
-bash switch_openclaw_to_crazyrouter.sh --api-key YOUR_CRAZYROUTER_KEY --restart
+bash switch_openclaw_to_crazyrouter.sh --restart
 ```
+
+The script will securely prompt the user to paste their CrazyRouter API key if `--api-key` is not provided.
 
 You can also inspect the script directly in this repo:
 - `scripts/switch_openclaw_to_crazyrouter.sh`

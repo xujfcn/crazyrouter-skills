@@ -81,8 +81,13 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "$API_KEY" ]]; then
-  echo "Error: --api-key is required" >&2
-  print_help
+  echo "No API key provided via --api-key."
+  read -rsp "Enter your CrazyRouter API key: " API_KEY
+  echo
+fi
+
+if [[ -z "$API_KEY" ]]; then
+  echo "Error: CrazyRouter API key is required" >&2
   exit 1
 fi
 

@@ -21,6 +21,28 @@ npx crazyrouter-skills install <skill-name>
 | `crazyrouter-music-gen` | AI music generation (Suno) |
 | `crazyrouter-video-gen` | AI video generation (Sora 2, Kling, Veo 3) |
 
+## Pilot Batch Drafts
+
+These are early-stage draft skills created under the Skills Factory publishing workflow. They are not production-published yet, but are being prepared for evaluation and review.
+
+| Skill | Type | Positioning |
+|-------|------|-------------|
+| `multi-model-response-comparator` | Crazyrouter-native | Compare multiple model outputs for the same prompt and recommend best-fit choices |
+| `api-pricing-comparator` | Crazyrouter-enhanced | Turn model/provider pricing data into structured comparison content |
+| `serp-outline-extractor` | Ecosystem-neutral | Generate search-informed outlines and content briefs from target queries |
+
+## Quick Setup for Existing OpenClaw Users
+
+To switch an existing OpenClaw install to CrazyRouter as the default API backend:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/xujfcn/crazyrouter-skills/main/scripts/switch_openclaw_to_crazyrouter.sh -o switch_openclaw_to_crazyrouter.sh
+bash switch_openclaw_to_crazyrouter.sh --api-key YOUR_CRAZYROUTER_KEY --restart
+```
+
+You can also inspect the script directly in this repo:
+- `scripts/switch_openclaw_to_crazyrouter.sh`
+
 ## Commands
 
 ```bash

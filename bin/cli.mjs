@@ -8,14 +8,12 @@ const REPO_RAW = 'https://raw.githubusercontent.com/xujfcn/crazyrouter-skills/ma
 const SKILLS_DIR = join(homedir(), '.openclaw', 'skills');
 
 const REGISTRY = {
-  'crazyrouter-chat':      { desc: 'Chat with 627+ AI models', files: ['SKILL.md', 'scripts/main.mjs'] },
-  'crazyrouter-image-gen':  { desc: 'AI image generation (DALL-E 3, GPT Image, Gemini)', files: ['SKILL.md', 'scripts/main.mjs'] },
+  'crazyrouter-chat':      { desc: 'Chat with compatible models', files: ['SKILL.md', 'scripts/main.mjs'] },
+  'crazyrouter-image-gen':  { desc: 'One synchronous image via the Images API', files: ['SKILL.md', 'scripts/main.mjs'] },
   'crazyrouter-tts':        { desc: 'Text-to-speech (OpenAI TTS voices)', files: ['SKILL.md', 'scripts/main.mjs'] },
   'crazyrouter-stt':        { desc: 'Speech-to-text transcription (Whisper)', files: ['SKILL.md', 'scripts/main.mjs'] },
   'crazyrouter-ocr':        { desc: 'Image-to-text / OCR (GPT-4o, Gemini, Claude)', files: ['SKILL.md', 'scripts/main.mjs'] },
   'crazyrouter-translate':  { desc: 'AI translation (multi-model)', files: ['SKILL.md', 'scripts/main.mjs'] },
-  'crazyrouter-music-gen':  { desc: 'AI music generation (Suno)', files: ['SKILL.md', 'scripts/main.mjs'] },
-  'crazyrouter-video-gen':  { desc: 'AI video generation (Sora 2, Kling, Veo 3)', files: ['SKILL.md', 'scripts/main.mjs'] },
 };
 
 const args = process.argv.slice(2);
@@ -109,10 +107,13 @@ async function installSkill(name) {
   console.log(`\n✅ ${name} installed to ${targetDir}`);
   console.log(`\n💡 Set your API key:`);
   console.log(`   export CRAZYROUTER_API_KEY="your-key-here"`);
-  console.log(`   Get one free at https://crazyrouter.com\n`);
+  console.log(`   Create a key at https://crazyrouter.com\n`);
 }
 
 function uninstallSkill(name) {
+  if (!Object.hasOwn(REGISTRY, name) && !['crazyrouter-video-gen', 'crazyrouter-music-gen'].includes(name)) {
+    console.error('Unknown skill name'); process.exitCode = 1; return;
+  }
   const targetDir = join(SKILLS_DIR, name);
   if (!existsSync(targetDir)) {
     console.error(`\n❌ Skill not installed: ${name}\n`);

@@ -1,71 +1,39 @@
-# ⚡ CrazyRouter Skills
+# Crazyrouter Skills
 
-Production-tested AI agent skills powered by [Crazyrouter API](https://crazyrouter.com).
-
-## Install
+Updated 2026-10-12. Node.js 22+ command-line helpers for supported Crazyrouter APIs.
 
 ```bash
-npx crazyrouter-skills install <skill-name>
+npx crazyrouter-skills@1.0.1 list
+npx crazyrouter-skills@1.0.1 install crazyrouter-chat
+npx crazyrouter-skills@1.0.1 install crazyrouter-image-gen
 ```
 
-## Available Skills
+Set `CRAZYROUTER_API_KEY` locally. The installer places files in `~/.openclaw/skills/` and currently downloads the repository's main-branch skill files.
 
-| Skill | Description |
-|-------|-------------|
-| `crazyrouter-chat` | Chat with 627+ AI models (GPT-5, Claude, Gemini, DeepSeek...) |
-| `crazyrouter-image-gen` | AI image generation (DALL-E 3, GPT Image, Gemini, Imagen 4) |
-| `crazyrouter-tts` | Text-to-speech (OpenAI TTS voices) |
-| `crazyrouter-stt` | Speech-to-text transcription (Whisper) |
-| `crazyrouter-ocr` | Image-to-text / OCR (GPT-4o, Gemini, Claude) |
-| `crazyrouter-translate` | AI translation (multi-model comparison) |
-| `crazyrouter-music-gen` | AI music generation (Suno) |
-| `crazyrouter-video-gen` | AI video generation (Sora 2, Kling, Veo 3) |
+| Skill | Scope |
+|---|---|
+| crazyrouter-chat | Text Chat Completions and authenticated model discovery |
+| crazyrouter-image-gen | One synchronous image, default gpt-image-2; URL/base64 output |
+| crazyrouter-tts | OpenAI-compatible text-to-speech helper |
+| crazyrouter-stt | OpenAI-compatible transcription helper |
+| crazyrouter-ocr | Vision-based image understanding helper |
+| crazyrouter-translate | Text translation helper |
 
-## Pilot Batch Drafts
+Model and endpoint availability varies. Audio, vision and translation helpers remain available but were not comprehensively retested in this release. This is not a claim that every catalogue model or media operation is implemented.
 
-These are early-stage draft skills created under the Skills Factory publishing workflow. They are not production-published yet, but are being prepared for evaluation and review.
+## Retired video and music helpers
 
-| Skill | Type | Positioning |
-|-------|------|-------------|
-| `multi-model-response-comparator` | Crazyrouter-native | Compare multiple model outputs for the same prompt and recommend best-fit choices |
-| `api-pricing-comparator` | Crazyrouter-enhanced | Turn model/provider pricing data into structured comparison content |
-| `serp-outline-extractor` | Ecosystem-neutral | Generate search-informed outlines and content briefs from target queries |
-
-## Quick Setup for Existing OpenClaw Users
-
-To switch an existing OpenClaw install to CrazyRouter as the default API backend:
+The old video/music scripts incorrectly sent task requests to Chat Completions. They are no longer installable through the registry; the repository scripts now stop with an explanation and make no API requests. Existing installations are not updated automatically:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/xujfcn/crazyrouter-skills/main/scripts/switch_openclaw_to_crazyrouter.sh -o switch_openclaw_to_crazyrouter.sh
-bash switch_openclaw_to_crazyrouter.sh --restart
+npx crazyrouter-skills@1.0.1 uninstall crazyrouter-video-gen
+npx crazyrouter-skills@1.0.1 uninstall crazyrouter-music-gen
 ```
 
-The script will securely prompt the user to paste their CrazyRouter API key if `--api-key` is not provided.
+Use the [native task API documentation](https://docs.crazyrouter.com) for submission and status polling. Reinstall an existing chat/image skill to receive the revised script.
 
-You can also inspect the script directly in this repo:
-- `scripts/switch_openclaw_to_crazyrouter.sh`
+## Billing and credentials
 
-## Commands
+Live calls use your own key and incur the model's normal charges. Keys are sent to the configured API server for authentication. Check [current prices](https://crazyrouter.com/en/pricing) and [model capabilities](https://crazyrouter.com/en/models); no fixed model count or free-credit promise applies.
 
-```bash
-npx crazyrouter-skills list          # List all available skills
-npx crazyrouter-skills installed     # Show installed skills
-npx crazyrouter-skills install <name> # Install a skill
-npx crazyrouter-skills uninstall <name> # Remove a skill
-```
-
-## Requirements
-
-- [Crazyrouter API Key](https://crazyrouter.com) (free to start)
-- Set `CRAZYROUTER_API_KEY` environment variable
-
-## Links
-
-- 🛒 [Skills Shop](https://skills.crazyrouter.com)
-- 📖 [Documentation](https://skills.crazyrouter.com/docs)
-- 🌐 [API Gateway](https://crazyrouter.com)
-- 💬 [Telegram](https://t.me/crzrouter)
-
-## License
-
-MIT
+MIT. [Source](https://github.com/xujfcn/crazyrouter-skills) · [API documentation](https://docs.crazyrouter.com)
